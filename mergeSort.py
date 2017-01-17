@@ -1,8 +1,13 @@
 #Jonathan Hooper MergeSort Jan 2017
+import time
+import random
 
 #merge function, should compare 2 lists, taking smallest from each side.
-fullList = [10,7,5,2,3,9,1,4,6,8]
 
+fullList = []
+for i in range(0,10000):
+    fullList.append(random.randint(0,10000))
+startTime = time.time()
 
 def merge(left,right):
     mergedList = []
@@ -21,9 +26,11 @@ def mergeSort(uList):
     mid = len(uList)//2
     left = mergeSort(uList[:mid])
     right = mergeSort(uList[mid:])
-    mList = merge(left,right)
-    return mList
-
+    return merge(left,right)
 
 sortedList = mergeSort(fullList)
+endTime = time.time()
+totalTime = endTime - startTime
+listLen = len(fullList)
 print(sortedList)
+print(str(listLen),'items merge sorted in',str(totalTime), 'seconds')
